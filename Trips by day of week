@@ -1,0 +1,49 @@
+## number of trips by day of week
+
+SELECT
+  member_casual,
+  day_of_week,
+  COUNT(*)AS num_trips,
+FROM
+  (
+    SELECT *
+    FROM Cyclistic_Datas.202201
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202202
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202203
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202204
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202205
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202206
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202207
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202208
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202209
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202210
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202211
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202212
+  )
+  AS cyclistic_data
+GROUP BY
+  member_casual,day_of_week
+ORDER BY
+  day_of_week
