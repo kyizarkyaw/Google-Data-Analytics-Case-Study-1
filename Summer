@@ -1,0 +1,15 @@
+SELECT
+  avg(datetime_diff(ended_at,started_at,minute)) AS Avg_duration,
+FROM
+  (
+    SELECT *
+    FROM Cyclistic_Datas.202206
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202207
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202208
+  )
+  AS cyclistic_data
+
