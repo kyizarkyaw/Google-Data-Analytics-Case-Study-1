@@ -1,3 +1,4 @@
+## average ride length
 SELECT
   avg(datetime_diff(ended_at,started_at,minute)) AS Avg_duration,
 FROM
@@ -13,3 +14,70 @@ FROM
   )
   AS cyclistic_data
 
+
+## number of rides
+
+SELECT
+  member_casual,
+  COUNT(*)AS num_trips,
+FROM
+  (
+    SELECT *
+    FROM Cyclistic_Datas.202206
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202207
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202208
+  )
+  AS cyclistic_data
+GROUP BY
+  member_casual
+
+## which day is mostly ride by Casual
+
+SELECT
+  member_casual,
+  day_of_week,
+  COUNT(*)AS num_trips,
+FROM
+  (
+    SELECT *
+    FROM Cyclistic_Datas.202206
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202207
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202208
+  )
+  AS cyclistic_data
+WHERE member_casual='casual'
+GROUP BY
+  member_casual,day_of_week
+ORDER BY 
+  num_trips DESC
+
+## Bike Types
+
+SELECT
+  member_casual,
+  rideable_type,
+  COUNT(*)AS num_trips
+FROM
+  (
+    SELECT *
+    FROM Cyclistic_Datas.202206
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202207
+    UNION ALL
+    SELECT *
+    FROM Cyclistic_Datas.202208
+  )
+  AS cyclistic_data
+GROUP BY
+  member_casual,rideable_type
+ORDER BY 
+  num_trips DESC
